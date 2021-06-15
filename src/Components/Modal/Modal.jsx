@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 const Modal = () => {
     const {modal,setModal} = useGlobalContext();
-    console.log(modal);
     const {name, details} = modal;
     return <Wrapper>
         <div className="modalContainer">
