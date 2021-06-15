@@ -19,16 +19,47 @@ const AppProvider = ({children}) => {
 
     // СТЕЙТ ДЛЯ ФОРМЫ
     const [formData, updateFormData] = useState(initialFormData);
-    // СТЕЙТ ДЛЯ МОДАЛБНОГО ОКНА
+    // СТЕЙТ ДЛЯ МОДАЛЬНОГО ОКНА
     const [modal, setModal] = useState('')
+    // ВРЕМЕННЫЙ СТЕЙТ ДЛЯ ПОДГРУЖЕННЫХ ФАЙЛОВ;
+    const [newFiles, setNewFiles] = useState('');
 
-    //DRAG AND DROP
+    //////////////////////////   DRAG AND DROP    //////////////////////
     const onDrop = useCallback(acceptedFiles => {
+        setNewFiles([ ...acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file), amount: 1}))])
+    }, []);
+
+    const doNotAddTheSameFiles = (array) => {
+        let uniqueArray;
+        let uniqueName;
+        if (formData.Файлы.length > 0) {
+            uniqueArray = formData.Файлы;
+            uniqueName = uniqueArray.map((arr)=> {
+                return arr.name
+            });
+        } else {
+            uniqueArray = [];
+            uniqueName = [];
+        }
+        array.forEach((a) => {
+            if(uniqueName.indexOf(a.name) === -1) {
+                uniqueName.push(a.name);
+                uniqueArray.push(a);
+        }})
         updateFormData({
             ...formData,
-            Файлы: acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file), amount: 1}))
+            Файлы: uniqueArray
         })
-    }, []);
+    }
+
+    useEffect(()=> {
+            if (newFiles === '') {
+                return
+            } else {
+                doNotAddTheSameFiles(newFiles)
+            }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [newFiles]);
 
     const size = 104857600;
 
@@ -45,7 +76,6 @@ const AppProvider = ({children}) => {
                 return Object.assign(file, {amount: ++formData.Файлы[index].amount})
             } 
             if (operator === "-") {
-                console.log('poop')
                 return Object.assign(file, {amount: --formData.Файлы[index].amount})
             }
         } else {
@@ -65,7 +95,7 @@ const AppProvider = ({children}) => {
             if(formData.Файлы[index].amount === 1) {
                 updateFormData({
                     ...formData,
-                    Файлы: formData.Файлы.filter((file,ind) => ind != index)
+                    Файлы: formData.Файлы.filter((file,ind) => ind !== index)
                 })
             } else {
                 updateFormData({
@@ -76,7 +106,13 @@ const AppProvider = ({children}) => {
         }
     }    
 
-    // ПАРАМЕТРЫ
+    const shortenName = (name) => {
+        if (name.length > 18) {
+            name = `${name.slice(0,18)}...`
+        } 
+        return name;
+    }
+    //////////////////    ПАРАМЕТРЫ   /////////////////////////////
     const handleSettingsChange= (e) => {
         e.preventDefault();
         if(e.target.type === 'select-one') {
@@ -117,7 +153,7 @@ const AppProvider = ({children}) => {
         })
     }
 
-    // СТОИМОСТЬ
+    //////////////////////     СТОИМОСТЬ     ///////////////////////////
     const handleDeliveryChange = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -146,7 +182,10 @@ const AppProvider = ({children}) => {
         removeFiles,
         toggleAmount,
         modal,
-        setModal
+        setModal,
+        newFiles,
+        setNewFiles,
+        shortenName
     }}>{children}</AppContext.Provider>
 }
 

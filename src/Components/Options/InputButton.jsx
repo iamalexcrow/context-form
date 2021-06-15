@@ -1,5 +1,7 @@
 import React from 'react';
+//styled
 import styled from 'styled-components';
+//context
 import { useGlobalContext } from '../../state/context';
 
 const InputButton = ({name}) => {
@@ -35,6 +37,7 @@ button {
     background-color:rgba(241, 242, 246, 1.00);
     width: 50px;
     padding: 10px;
+    cursor: pointer;
 }
 .result {
     border: 2px solid rgba(241, 242, 246, 1.00);

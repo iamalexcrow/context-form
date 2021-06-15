@@ -1,7 +1,9 @@
 import React from 'react';
+import data from '../../data/data.json';
+//styled
 import {Title} from '../styledComponents';
 import styled from 'styled-components';
-import data from '../../data/data.json';
+//components
 import DeliveryOption from './DeliveryOption';
 
 const Price = () => {

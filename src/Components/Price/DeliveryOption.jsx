@@ -1,6 +1,9 @@
 import React from 'react';
+//styled
 import styled, {css} from 'styled-components';
+//context
 import { useGlobalContext } from '../../state/context';
+//components
 import Cost from './Cost';
 
 const DeliveryOption = ({name, available, price, time}) => {
@@ -29,6 +32,7 @@ const Option = styled.button`
     align-items: center;
     margin-bottom:2px;
     padding: 0 8px;
+    cursor: pointer;
 ${props => props.active && css`
     border: 2px solid rgba(26, 110, 203, 1.00);
 `}

@@ -1,16 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 //components
-import {Title} from '../styledComponents'
+
 import ResetBox from './ResetBox';
-import Settings from './Settings';
+import SettingsSelect from './SettingsSelect';
+//styled
+import {Title, device} from '../styledComponents';
+import styled from 'styled-components';
 
 const Options = () => {
     return (
         <Wrapper>
             <Title>Параметры</Title>
             <ResetBox/>
-            <Settings/>
+            <SettingsSelect/>
         </Wrapper>
     )
 }
@@ -20,4 +22,7 @@ export default Options;
 const Wrapper = styled.div`
 grid-column: 1/2;
 grid-row: 2/3;
+@media ${device.laptopM} {
+    font-size: 0.8rem
+}
 `

@@ -1,6 +1,10 @@
 import React from 'react';
+//styled
 import styled from 'styled-components';
+import { device } from '../styledComponents';
+//context
 import { useGlobalContext } from '../../state/context';
+
 
 const ResetBox = () => {
 const {reset} = useGlobalContext();
@@ -47,7 +51,15 @@ button {
     background-color: rgba(26, 110, 203, 0);
     border: 1px solid rgba(26, 110, 203, 1.00);
     padding: 15px;
+    cursor:pointer;
     :active {
         background-color: rgba(26, 110, 203, 0.3);
     }
-}`
+}
+@media ${device.mobile} {
+    flex-direction: column;
+    .buttonArea {
+        margin-top: 10px;
+    }
+}
+`

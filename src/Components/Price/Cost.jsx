@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
+//styled
 import styled from 'styled-components';
-
 
 const Cost = ({price}) => {
 

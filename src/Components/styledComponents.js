@@ -9,3 +9,29 @@ export const Title = styled.p`
     padding: 10px 0;
     margin: 10px 0;
 `
+
+const size = {
+    mobile: '420px',
+    tabletS: '603px',
+    tabletM: '758px',
+    tabletL: '924px',
+    laptopXS: '1161px',
+    laptopS: '1207px',
+    laptopM: '1440px',
+    laptopML: '1663px',
+    laptopL: '1807px',
+    desktop: '2560px'
+  }
+
+  export const device = {
+    mobile: `(max-width: ${size.mobile})`,
+    tabletS: `(max-width: ${size.tabletS})`,
+    tabletM: `(max-width: ${size.tabletM})`,
+    tabletL: `(max-width: ${size.tabletL})`,
+    laptopXS: `(max-width: ${size.laptopXS})`,
+    laptopS: `(max-width: ${size.laptopS})`,
+    laptopM: `(max-width: ${size.laptopM})`,
+    laptopML: `(max-width: ${size.laptopML})`,
+    laptopL: `(max-width: ${size.laptopL})`,
+    desktop: `(max-width: ${size.desktop})`
+  };

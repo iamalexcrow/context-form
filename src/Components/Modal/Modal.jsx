@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
+import React from 'react';
+//context
 import { useGlobalContext } from '../../state/context';
+//styled
 import {Title} from '../styledComponents';
+import styled from 'styled-components';
 
 const Modal = () => {
     const {modal,setModal} = useGlobalContext();
